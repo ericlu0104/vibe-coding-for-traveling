@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 東北冬日祭 | 完整版旅程助手</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --accent: #1e3a8a; --glass: rgba(255, 255, 255, 0.9); }
+        body { font-family: 'Noto Sans TC', 'Poppins', sans-serif; background: #f1f5f9; color: #1e293b; scroll-behavior: smooth; }
+        .glass { background: var(--glass); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
+        .nav-btn.active { color: var(--accent); background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transform: translateY(-2px); }
+        .timeline-item::before { content: ''; position: absolute; left: 19px; top: 32px; bottom: -32px; width: 2px; background: #cbd5e1; }
+        .timeline-item:last-child::before { display: none; }
+        .card-anim { animation: fadeInUp 0.4s ease-out forwards; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        .checked-item { text-decoration: line-through; color: #94a3b8; opacity: 0.6; }
+        .badge-fee { background: #f1f5f9; color: #475569; padding: 2px 8px; border-radius: 6px; font-size: 10px; font-weight: 700; border: 1px solid #e2e8f0; }
+        .badge-note { background: #fff7ed; color: #c2410c; padding: 2px 8px; border-radius: 6px; font-size: 10px; font-weight: 700; border: 1px solid #ffedd5; }
+    </style>
+</head>
+<body class="pb-32">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 glass px-6 py-5">
+        <div class="flex justify-between items-center">
+            <div>
+                <h1 class="text-2xl font-black tracking-tight text-slate-900">❄️ 東北冬日祭</h1>
+                <p class="text-[10px] font-bold text-blue-700 tracking-[0.2em] uppercase">Japan Tohoku 2026</p>
+            </div>
+            <div class="text-[10px] font-black text-slate-400 border border-slate-200 px-2 py-1 rounded-lg">7 DAYS PLAN</div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="fixed bottom-8 left-1/2 -translate-x-1/2 w-[92%] max-w-md z-50 glass rounded-3xl p-1.5 shadow-2xl flex gap-1 border border-white">
+        <button onclick="showTab('overview')" id="btn-overview" class="nav-btn active flex-1 py-3 rounded-2xl transition-all flex flex-col items-center gap-1">
+            <i class="fa-solid fa-calendar-days text-sm"></i>
+            <span class="text-[10px] font-bold">行程總覽</span>
+        </button>
+        <button onclick="showTab('spots')" id="btn-spots" class="nav-btn flex-1 py-3 rounded-2xl transition-all flex flex-col items-center gap-1">
+            <i class="fa-solid fa-map-location-dot text-sm"></i>
+            <span class="text-[10px] font-bold">周邊延伸</span>
+        </button>
+        <button onclick="showTab('packing')" id="btn-packing" class="nav-btn flex-1 py-3 rounded-2xl transition-all flex flex-col items-center gap-1">
+            <i class="fa-solid fa-clipboard-list text-sm"></i>
+            <span class="text-[10px] font-bold">行李清單</span>
+        </button>
+        <button onclick="showTab('weather')" id="btn-weather" class="nav-btn flex-1 py-3 rounded-2xl transition-all flex flex-col items-center gap-1">
+            <i class="fa-solid fa-vest text-sm"></i>
+            <span class="text-[10px] font-bold">穿搭建議</span>
+        </button>
+    </nav>
+
+    <!-- Section: Overview (嚴格根據 Excel) -->
+    <section id="overview" class="tab-content px-6 py-8 space-y-12">
+        <!-- Day 1 -->
+        <div class="day-group">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="bg-blue-900 text-white px-3 py-1 rounded-xl text-sm font-black">D1</span>
+                <h2 class="text-xl font-black text-slate-800">02/26 (四) 青森市區</h2>
+            </div>
+            <div class="space-y-5">
+                <div class="relative pl-12 timeline-item">
+                    <div class="absolute left-0 w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center z-10 shadow-sm"><i class="fa-solid fa-plane text-blue-900"></i></div>
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                        <div class="flex justify-between items-center mb-1"><span class="text-[10px] font-bold text-blue-600">10:00 - 14:30</span><span class="badge-fee">BR122</span></div>
+                        <h3 class="font-bold text-slate-800 text-sm">桃園機場 T2 → 青森機場</h3>
+                    </div>
+                </div>
+                <div class="relative pl-12 timeline-item">
+                    <div class="absolute left-0 w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center z-10 shadow-sm"><i class="fa-solid fa-bus text-blue-900"></i></div>
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                        <div class="flex justify-between items-center mb-1"><span class="text-[10px] font-bold text-blue-600">15:30 - 16:50</span><span class="badge-fee">¥980</span></div>
+                        <h3 class="font-bold text-slate-800 text-sm">機場巴士至青森車站</h3>
+                        <p class="text-[10px] text-slate-500 mt-1">住宿：青森大和ROYNET (東口步行7分)</p>
+                    </div>
+                </div>
+                <div class="relative pl-12 timeline-item">
+                    <div class="absolute left-0 w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center z-10 shadow-sm"><i class="fa-solid fa-utensils text-blue-900"></i></div>
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                        <div class="flex justify-between items-center mb-1"><span class="text-[10px] font-bold text-blue-600">19:00</span><span class="badge-note">已預約</span></div>
+                        <h3 class="font-bold text-slate-800 text-sm">晚餐：青森大福丸</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 2 -->
+        <div class="day-group">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="bg-blue-900 text-white px-3 py-1 rounded-xl text-sm font-black">D2</span>
+                <h2 class="text-xl font-black text-slate-800">02/27 (五) 八甲山・奧入瀨</h2>
+            </div>
+            <div class="space-y-5">
+                <div class="relative pl-12 timeline-item">
+                    <div class="absolute left-0 w-10 h-10 rounded-full bg-white flex items-center justify-center z-10 shadow-sm"><i class="fa-solid fa-bowl-food text-blue-900"></i></div>
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                        <div class="flex justify-between items-center mb-1"><span class="text-[10px] font-bold text-blue-600">07:30</span></div>
+                        <h3 class="font-bold text-slate-800 text-sm">早餐：青森魚菜市場</h3>
+                    </div>
+                </div>
+                <div class="relative pl-12 timeline-item">
+                    <div class="absolute left-0 w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center z-10 shadow-sm"><i class="fa-solid fa-car text-blue-900"></i></div>
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                        <div class="flex justify-between items-center mb-1"><span class="text-[10px] font-bold text-blue-600">08:30</span><span class="badge-note">取車</span></div>
+                        <h3 class="font-bold text-slate-800 text-sm">Nippon 租車取車</h3>
+                    </div>
+                </div>
+                <div class="relative pl-12 timeline-item">
+                    <div class="absolute left-0 w-10 h-10 rounded-full bg-white flex items-center justify-center z-10 shadow-sm"><i class="fa-solid fa-mountain text-blue-900"></i></div>
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                        <div class="flex justify-between items-center mb-1"><span class="text-[10px] font-bold text-blue-600">10:00 - 13:00</span><span class="badge-fee">¥2000</span></div>
+                        <h3 class="font-bold text-slate-800 text-sm">八甲田山纜車 & 樹冰</h3>
+                    </div>
+                </div>
+                <div class="relative pl-12 timeline-item">
+                    <div class="absolute left-0 w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center z-10 shadow-sm"><i class="fa-solid fa-hot-tub-person text-white"></i></div>
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                        <div class="flex justify-between items-center mb-1"><span class="text-[10px] font-bold text-blue-600">16:30</span><span class="badge-fee">¥1500 (導覽)</span></div>
+                        <h3 class="font-bold text-slate-800 text-sm">星野奧入瀨溪流飯店</h3>
+                        <p class="text-[10px] text-slate-500 mt-1">20:00 夜間冰瀑導覽</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 3 -->
+        <div class="day-group">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="bg-blue-900 text-white px-3 py-1 rounded-xl text-sm font-black">D3</span>
+                <h2 class="text-xl font-black text-slate-800">02/28 (六) 奧入瀨・盛岡</h2>
+            </div>
+            <div class="space-y-5">
+                <div class="relative pl-12 timeline-item">
+                    <div class="absolute left-0 w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center z-10 shadow-sm"><i class="fa-solid fa-snowflake text-blue-900"></i></div>
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                        <div class="flex justify-between items-center mb-1"><span class="text-[10px] font-bold text-blue-600">08:50 - 12:00</span><span class="badge-fee">¥6600</span></div>
+                        <h3 class="font-bold text-slate-800 text-sm">十和田湖雪鞋漫步</h3>
+                    </div>
+                </div>
+                <div class="relative pl-12 timeline-item">
+                    <div class="absolute left-0 w-10 h-10 rounded-full bg-white flex items-center justify-center z-10 shadow-sm"><i class="fa-solid fa-landmark text-blue-900"></i></div>
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                        <div class="flex justify-between items-center mb-1"><span class="text-[10px] font-bold text-blue-600">14:00 - 17:00</span></div>
+                        <h3 class="font-bold text-slate-800 text-sm">青森美術館 & 三內丸山</h3>
+                    </div>
+                </div>
+                <div class="relative pl-12 timeline-item">
+                    <div class="absolute left-0 w-10 h-10 rounded-full bg-white flex items-center justify-center z-10 shadow-sm"><i class="fa-solid fa-train text-blue-900"></i></div>
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                        <div class="flex justify-between items-center mb-1"><span class="text-[10px] font-bold text-blue-600">17:22</span></div>
+                        <h3 class="font-bold text-slate-800 text-sm">新幹線：新青森 → 盛岡</h3>
+                        <p class="text-[10px] text-slate-500 mt-1">住宿：Richmond Hotel 盛岡站前</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 4 -->
+        <div class="day-group">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="bg-blue-900 text-white px-3 py-1 rounded-xl text-sm font-black">D4</span>
+                <h2 class="text-xl font-black text-slate-800">03/01 (日) 盛岡・仙台</h2>
+            </div>
+            <div class="space-y-5">
+                <div class="relative pl-12 timeline-item">
+                    <div class="absolute left-0 w-10 h-10 rounded-full bg-white flex items-center justify-center z-10 shadow-sm"><i class="fa-solid fa-bread-slice text-blue-900"></i></div>
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                        <div class="flex justify-between items-center mb-1"><span class="text-[10px] font-bold text-blue-600">07:30</span></div>
+                        <h3 class="font-bold text-slate-800 text-sm">早餐：福田麵包</h3>
+                    </div>
+                </div>
+                <div class="relative pl-12 timeline-item">
+                    <div class="absolute left-0 w-10 h-10 rounded-full bg-white flex items-center justify-center z-10 shadow-sm"><i class="fa-solid fa-building-columns text-blue-900"></i></div>
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                        <div class="flex justify-between items-center mb-1"><span class="text-[10px] font-bold text-blue-600">09:30 - 12:00</span><span class="badge-fee">¥300</span></div>
+                        <h3 class="font-bold text-slate-800 text-sm">岩手銀行赤煉瓦館 / 盛岡城跡</h3>
+                    </div>
+                </div>
+                <div class="relative pl-12 timeline-item">
+                    <div class="absolute left-0 w-10 h-10 rounded-full bg-white flex items-center justify-center z-10 shadow-sm"><i class="fa-solid fa-train text-blue-900"></i></div>
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                        <div class="flex justify-between items-center mb-1"><span class="text-[10px] font-bold text-blue-600">14:17</span></div>
+                        <h3 class="font-bold text-slate-800 text-sm">新幹線：盛岡 → 仙台</h3>
+                        <p class="text-[10px] text-slate-500 mt-1">住宿：Daiwa Roynet 仙台西口</p>
+                    </div>
+                </div>
+                <div class="relative pl-12 timeline-item">
+                    <div class="absolute left-0 w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center z-10 shadow-sm"><i class="fa-solid fa-utensils text-orange-600"></i></div>
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                        <div class="flex justify-between items-center mb-1"><span class="text-[10px] font-bold text-blue-600">17:00</span><span class="badge-note">提早排隊</span></div>
+                        <h3 class="font-bold text-slate-800 text-sm">晚餐：牡丹炸豬排</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 5 -->
+        <div class="day-group">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="bg-blue-900 text-white px-3 py-1 rounded-xl text-sm font-black">D5</span>
+                <h2 class="text-xl font-black text-slate-800">03/02 (一) 松島・鹽竈</h2>
+            </div>
+            <div class="space-y-5">
+                <div class="relative pl-12 timeline-item">
+                    <div class="absolute left-0 w-10 h-10 rounded-full bg-white flex items-center justify-center z-10 shadow-sm"><i class="fa-solid fa-camera-retro text-blue-900"></i></div>
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                        <div class="flex justify-between items-center mb-1"><span class="text-[10px] font-bold text-blue-600">09:00 - 15:00</span></div>
+                        <h3 class="font-bold text-slate-800 text-sm">松島觀光 (福浦島/五大堂)</h3>
+                        <p class="text-[10px] text-slate-500 mt-1">搭乘汽船往鹽竈神社</p>
+                    </div>
+                </div>
+                <div class="relative pl-12 timeline-item">
+                    <div class="absolute left-0 w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center z-10 shadow-sm"><i class="fa-solid fa-utensils text-blue-900"></i></div>
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                        <div class="flex justify-between items-center mb-1"><span class="text-[10px] font-bold text-blue-600">18:00</span></div>
+                        <h3 class="font-bold text-slate-800 text-sm">晚餐：善治郎牛舌 (站前本店)</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 6 -->
+        <div class="day-group">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="bg-blue-900 text-white px-3 py-1 rounded-xl text-sm font-black">D6</span>
+                <h2 class="text-xl font-black text-slate-800">03/03 (二) 山寺・求財</h2>
+            </div>
+            <div class="space-y-5">
+                <div class="relative pl-12 timeline-item">
+                    <div class="absolute left-0 w-10 h-10 rounded-full bg-white flex items-center justify-center z-10 shadow-sm"><i class="fa-solid fa-person-hiking text-blue-900"></i></div>
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                        <div class="flex justify-between items-center mb-1"><span class="text-[10px] font-bold text-blue-600">09:30 - 11:30</span><span class="badge-fee">¥300</span></div>
+                        <h3 class="font-bold text-slate-800 text-sm">山形山寺 (立石寺)</h3>
+                        <p class="text-[10px] text-slate-500 mt-1">注意雪地階梯濕滑，建議加冰爪</p>
+                    </div>
+                </div>
+                <div class="relative pl-12 timeline-item">
+                    <div class="absolute left-0 w-10 h-10 rounded-full bg-white flex items-center justify-center z-10 shadow-sm"><i class="fa-solid fa-torii-gate text-blue-900"></i></div>
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                        <div class="flex justify-between items-center mb-1"><span class="text-[10px] font-bold text-blue-600">14:30</span></div>
+                        <h3 class="font-bold text-slate-800 text-sm">金蛇水神社</h3>
+                    </div>
+                </div>
+                <div class="relative pl-12 timeline-item">
+                    <div class="absolute left-0 w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center z-10 shadow-sm"><i class="fa-solid fa-fire-burner text-blue-900"></i></div>
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                        <div class="flex justify-between items-center mb-1"><span class="text-[10px] font-bold text-blue-600">18:00</span><span class="badge-note">已預約</span></div>
+                        <h3 class="font-bold text-slate-800 text-sm">晚餐：仔虎燒肉</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 7 -->
+        <div class="day-group">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="bg-blue-900 text-white px-3 py-1 rounded-xl text-sm font-black">D7</span>
+                <h2 class="text-xl font-black text-slate-800">03/04 (三) 仙台・回程</h2>
+            </div>
+            <div class="space-y-5">
+                <div class="relative pl-12 timeline-item">
+                    <div class="absolute left-0 w-10 h-10 rounded-full bg-white flex items-center justify-center z-10 shadow-sm"><i class="fa-solid fa-shopping-bag text-blue-900"></i></div>
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                        <div class="flex justify-between items-center mb-1"><span class="text-[10px] font-bold text-blue-600">09:00</span></div>
+                        <h3 class="font-bold text-slate-800 text-sm">仙台朝市 & 機場採買</h3>
+                    </div>
+                </div>
+                <div class="relative pl-12 timeline-item">
+                    <div class="absolute left-0 w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center z-10 shadow-sm"><i class="fa-solid fa-plane-departure text-white"></i></div>
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                        <div class="flex justify-between items-center mb-1"><span class="text-[10px] font-bold text-blue-600">16:15</span><span class="badge-fee">BR117</span></div>
+                        <h3 class="font-bold text-slate-800 text-sm">仙台機場 → 桃園 T2</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Spots (延伸推薦) -->
+    <section id="spots" class="tab-content hidden px-6 py-8 space-y-8 mb-20">
+        <h2 class="text-2xl font-black">根據住宿點延伸景點</h2>
+        
+        <div class="space-y-4">
+            <div class="bg-blue-900 text-white p-4 rounded-2xl shadow-lg">
+                <h3 class="font-black">📍 青森站周邊 (D1 住宿)</h3>
+            </div>
+            <div class="grid gap-3">
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100">
+                    <h4 class="font-bold text-sm">青森縣觀光物產館 ASPAM</h4>
+                    <p class="text-[10px] text-slate-500 mt-1">三角形地標，可登展望台鳥瞰青森港雪景。</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100">
+                    <h4 class="font-bold text-sm">淺蟲溫泉</h4>
+                    <p class="text-[10px] text-slate-500 mt-1">搭乘「青森鐵道」20分可達，適合傍晚去泡個日歸溫泉看夕陽。</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100">
+                    <h4 class="font-bold text-sm">青森拉麵大路 (內丸)</h4>
+                    <p class="text-[10px] text-slate-500 mt-1">晚上想宵夜？這裡有著名的長尾中華蕎麥(煮干拉麵)。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-4">
+            <div class="bg-blue-900 text-white p-4 rounded-2xl shadow-lg">
+                <h3 class="font-black">📍 奧入瀨/十和田 (D2 住宿)</h3>
+            </div>
+            <div class="grid gap-3">
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100">
+                    <h4 class="font-bold text-sm">十和田神社</h4>
+                    <p class="text-[10px] text-slate-500 mt-1">湖畔神秘神社，雪中參道極美，是著名的能量景點。</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100">
+                    <h4 class="font-bold text-sm">蔦沼</h4>
+                    <p class="text-[10px] text-slate-500 mt-1">雖以楓葉著名，但冬天的枯枝雪影與無人的靜謐感非常震撼。</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100">
+                    <h4 class="font-bold text-sm">酸湯溫泉</h4>
+                    <p class="text-[10px] text-slate-500 mt-1">開車約 40分。擁有傳說中的「千人風呂」大浴場。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-4">
+            <div class="bg-blue-900 text-white p-4 rounded-2xl shadow-lg">
+                <h3 class="font-black">📍 盛岡/仙台 (D3-D6 住宿)</h3>
+            </div>
+            <div class="grid gap-3">
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100">
+                    <h4 class="font-bold text-sm">仙台 仙台海之杜水族館</h4>
+                    <p class="text-[10px] text-slate-500 mt-1">室內景點首選，有巨大的黑潮大水槽與超萌企鵝。</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100">
+                    <h4 class="font-bold text-sm">仙台 AER 展望台 (免費)</h4>
+                    <p class="text-[10px] text-slate-500 mt-1">仙台站旁 31樓，可以免費俯瞰全仙台市夜景。</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100">
+                    <h4 class="font-bold text-sm">盛岡 材木町．賢治通</h4>
+                    <p class="text-[10px] text-slate-500 mt-1">非常有文學氣息的街道，適合買一些質感手工藝品。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Packing (補充完整版) -->
+    <section id="packing" class="tab-content hidden px-6 py-8 space-y-6 mb-20">
+        <h2 class="text-2xl font-black">行李清單 (完整檢查)</h2>
+        
+        <div class="space-y-4">
+            <div class="bg-white p-6 rounded-3xl shadow-sm">
+                <h3 class="font-black text-blue-900 mb-4 border-b border-blue-50 pb-2">📂 重要證件與票券</h3>
+                <div class="grid gap-3" id="check-list-1">
+                    <label class="flex items-center gap-3 cursor-pointer" onclick="toggleCheck(this)">
+                        <div class="w-6 h-6 border-2 border-slate-200 rounded-lg flex items-center justify-center transition-all"><i class="fa-solid fa-check text-white text-[10px]"></i></div>
+                        <span class="text-sm font-bold text-slate-700">護照 & 簽證 (如有)</span>
+                    </label>
+                    <label class="flex items-center gap-3 cursor-pointer" onclick="toggleCheck(this)">
+                        <div class="w-6 h-6 border-2 border-slate-200 rounded-lg flex items-center justify-center transition-all"><i class="fa-solid fa-check text-white text-[10px]"></i></div>
+                        <span class="text-sm font-bold text-slate-700">國際駕照 & 台灣駕照正本 (租車必備)</span>
+                    </label>
+                    <label class="flex items-center gap-3 cursor-pointer" onclick="toggleCheck(this)">
+                        <div class="w-6 h-6 border-2 border-slate-200 rounded-lg flex items-center justify-center transition-all"><i class="fa-solid fa-check text-white text-[10px]"></i></div>
+                        <span class="text-sm font-bold text-slate-700">JR Pass、訂車/訂房確認信截圖</span>
+                    </label>
+                    <label class="flex items-center gap-3 cursor-pointer" onclick="toggleCheck(this)">
+                        <div class="w-6 h-6 border-2 border-slate-200 rounded-lg flex items-center justify-center transition-all"><i class="fa-solid fa-check text-white text-[10px]"></i></div>
+                        <span class="text-sm font-bold text-slate-700">現金 (東北很多小店不收卡)</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-3xl shadow-sm">
+                <h3 class="font-black text-blue-900 mb-4 border-b border-blue-50 pb-2">🔌 電子產品與備品</h3>
+                <div class="grid gap-3">
+                    <label class="flex items-center gap-3 cursor-pointer" onclick="toggleCheck(this)">
+                        <div class="w-6 h-6 border-2 border-slate-200 rounded-lg flex items-center justify-center transition-all"><i class="fa-solid fa-check text-white text-[10px]"></i></div>
+                        <span class="text-sm font-bold text-slate-700">行動電源 (低溫耗電極快！)</span>
+                    </label>
+                    <label class="flex items-center gap-3 cursor-pointer" onclick="toggleCheck(this)">
+                        <div class="w-6 h-6 border-2 border-slate-200 rounded-lg flex items-center justify-center transition-all"><i class="fa-solid fa-check text-white text-[10px]"></i></div>
+                        <span class="text-sm font-bold text-slate-700">萬用轉接頭 & 多口充電器</span>
+                    </label>
+                    <label class="flex items-center gap-3 cursor-pointer" onclick="toggleCheck(this)">
+                        <div class="w-6 h-6 border-2 border-slate-200 rounded-lg flex items-center justify-center transition-all"><i class="fa-solid fa-check text-white text-[10px]"></i></div>
+                        <span class="text-sm font-bold text-slate-700">網卡 / WiFi分享器</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-3xl shadow-sm">
+                <h3 class="font-black text-blue-900 mb-4 border-b border-blue-50 pb-2">💊 個人用品與藥品</h3>
+                <div class="grid gap-3">
+                    <label class="flex items-center gap-3 cursor-pointer" onclick="toggleCheck(this)">
+                        <div class="w-6 h-6 border-2 border-slate-200 rounded-lg flex items-center justify-center transition-all"><i class="fa-solid fa-check text-white text-[10px]"></i></div>
+                        <span class="text-sm font-bold text-slate-700">感冒/發燒藥、胃藥、止痛藥</span>
+                    </label>
+                    <label class="flex items-center gap-3 cursor-pointer" onclick="toggleCheck(this)">
+                        <div class="w-6 h-6 border-2 border-slate-200 rounded-lg flex items-center justify-center transition-all"><i class="fa-solid fa-check text-white text-[10px]"></i></div>
+                        <span class="text-sm font-bold text-slate-700">指甲剪、人工皮、痠痛貼布</span>
+                    </label>
+                    <label class="flex items-center gap-3 cursor-pointer" onclick="toggleCheck(this)">
+                        <div class="w-6 h-6 border-2 border-slate-200 rounded-lg flex items-center justify-center transition-all"><i class="fa-solid fa-check text-white text-[10px]"></i></div>
+                        <span class="text-sm font-bold text-slate-700">超保濕護唇膏 & 護手霜 (必備)</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Weather -->
+    <section id="weather" class="tab-content hidden px-6 py-8 space-y-6 mb-20">
+        <h2 class="text-2xl font-black">氣候與穿搭實戰</h2>
+        <div class="bg-gradient-to-br from-slate-900 to-blue-900 p-6 rounded-3xl text-white shadow-xl">
+            <p class="text-[10px] font-bold tracking-widest opacity-60 mb-2">EXPECTED TEMP</p>
+            <div class="flex items-center gap-4 mb-4">
+                <span class="text-5xl font-black">-4°C / 3°C</span>
+                <i class="fa-solid fa-snowflake text-4xl animate-pulse text-blue-300"></i>
+            </div>
+            <p class="text-xs opacity-80 leading-relaxed">
+                日本東北的冬日特點是「室外零下，室內酷熱」。為了在溫差 20度的環境中生存，你需要徹底執行<span class="text-blue-300 font-black">洋蔥式穿法</span>。
+            </p>
+        </div>
+
+        <div class="grid gap-4">
+            <div class="bg-white p-5 rounded-2xl border border-slate-100 flex gap-4">
+                <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 flex-shrink-0"><i class="fa-solid fa-shirt"></i></div>
+                <div>
+                    <h4 class="font-bold text-sm">基礎層 (Base Layer)</h4>
+                    <p class="text-[10px] text-slate-500 mt-1">選用吸濕發熱衣 (Heattech Ultra Warm)，避免純棉，以免出汗冷掉後導致體溫喪失。</p>
+                </div>
+            </div>
+            <div class="bg-white p-5 rounded-2xl border border-slate-100 flex gap-4">
+                <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 flex-shrink-0"><i class="fa-solid fa-vest"></i></div>
+                <div>
+                    <h4 class="font-bold text-sm">保暖層 & 防護層</h4>
+                    <p class="text-[10px] text-slate-500 mt-1">中層毛衣或輕羽絨。外層必須<span class="text-blue-700 font-bold">防風防水</span>，因為雪落到衣服上化開會弄濕身體。</p>
+                </div>
+            </div>
+            <div class="bg-orange-50 p-5 rounded-2xl border border-orange-100 flex gap-4">
+                <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center text-orange-600 flex-shrink-0"><i class="fa-solid fa-shoe-prints text-xl"></i></div>
+                <div>
+                    <h4 class="font-bold text-sm text-orange-900">足部最強提醒</h4>
+                    <p class="text-[10px] text-orange-700 mt-1">穿防水雪靴，襪子選羊毛厚襪。山寺行程請務必攜帶或在當地購買<span class="font-black underline">冰爪 (Spikes)</span>。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+
+            const activeTab = document.getElementById(tabId);
+            activeTab.classList.remove('hidden');
+            activeTab.classList.add('card-anim');
+            document.getElementById('btn-' + tabId).classList.add('active');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleCheck(el) {
+            const label = el.querySelector('span');
+            const box = el.querySelector('div');
+            const icon = box.querySelector('i');
+
+            if (label.classList.contains('checked-item')) {
+                label.classList.remove('checked-item');
+                box.classList.remove('bg-blue-900', 'border-blue-900');
+                icon.classList.add('text-white');
+            } else {
+                label.classList.add('checked-item');
+                box.classList.add('bg-blue-900', 'border-blue-900');
+                icon.classList.remove('text-white');
+            }
+        }
+    </script>
+</body>
+</html>
